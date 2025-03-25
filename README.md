@@ -208,11 +208,9 @@ keyboard = create_pagination_keyboard(page, total_pages)
 async def handle_user_response(update: Update, context: ContextTypes. DEFAULT_TYPE):
      query = update.callback_query
      category = query.data
-
-# Store the current chat state
+     # Store the current chat state
      chat_id = query.message.chat_id
      user_data = context.user_data
-
      # If the user clicks the main menu
      if category == "menu":
          await send_category_menu(chat_id, context)
