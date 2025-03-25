@@ -50,12 +50,12 @@ Además, el bot permite la navegación interactiva mediante botones, lo que mejo
 
 #### Vista Previa
 
-<img align="center" src="https://i.imgur.com/7GXWLHd.jpeg" alt="Bot01" heigth=300 />
-<img align="center" src="https://i.imgur.com/xlMrMYO.jpeg" alt="Bot02" heigth=300 />
-<img align="center" src="https://i.imgur.com/OGITxpr.jpeg" alt="Bot03" heigth=300 />
-<img align="center" src="https://i.imgur.com/KGTVCIG.jpeg" alt="Bot04" heigth=300 />
-<img align="center" src="https://i.imgur.com/sA9bLpD.jpeg" alt="Bot05" heigth=300 />
-<img align="center" src="https://i.imgur.com/oNQH8Vk.jpeg" alt="Bot06" heigth=300 />
+<img align="center" src="https://i.imgur.com/7GXWLHd.jpeg" alt="Bot01" height=300 />
+<img align="center" src="https://i.imgur.com/xlMrMYO.jpeg" alt="Bot02" height=300 />
+<img align="center" src="https://i.imgur.com/OGITxpr.jpeg" alt="Bot03" height=300 />
+<img align="center" src="https://i.imgur.com/KGTVCIG.jpeg" alt="Bot04" height=300 />
+<img align="center" src="https://i.imgur.com/sA9bLpD.jpeg" alt="Bot05" height=300 />
+<img align="center" src="https://i.imgur.com/oNQH8Vk.jpeg" alt="Bot06" height=300 />
 <img align="center" src="https://i.imgur.com/XhD1Qjc.jpeg" alt="Bot07" />
 
 #### Código con Comentarios (Español)
@@ -319,192 +319,194 @@ except (json.JSONDecodeError, FileNotFoundError) as e:
 
 #### Manejo seguro de las claves API:
 
-**NO** almacenar claves API en el código fuente, Es importante no dejar las claves de API (como la de TMDB y Telegram) directamente en el código. Usa un archivo `.env` para almacenarlas de manera segura o herramientas de gestión de secretos, como AWS Secrets Manager, Azure Key Vault o HashiCorp Vault.
+_NO_ almacenar claves API en el código fuente, Es importante no dejar las claves de API (como la de TMDB y Telegram) directamente en el código. Usa un archivo `.env` para almacenarlas de manera segura o herramientas de gestión de secretos, como AWS Secrets Manager, Azure Key Vault o HashiCorp Vault.
 
 1. Instalar python-dotenv
 
-   Antes de empezar, instalemos la librería `python-dotenv`, que nos permite leer variables de un archivo `.env`.
+Antes de empezar, instalemos la librería `python-dotenv`, que nos permite leer variables de un archivo `.env`.
 
-   Abrí una terminal y ejecutá:
+Abrí una terminal y ejecutá:
 
-   ```bash
-   pip install python-dotenv
-   ```
+```bash
+pip install python-dotenv
+```
 
-   Esto instalará la librería en tu entorno de Python.
+Esto instalará la librería en tu entorno de Python.
 
 2. Crear el archivo .env
 
-   El archivo `.env` se usa para guardar variables sensibles como claves de API o tokens.
-   En la misma carpeta donde está tu script Python, creá un archivo llamado `.env` (sin extensión).
+El archivo `.env` se usa para guardar variables sensibles como claves de API o tokens.
+En la misma carpeta donde está tu script Python, creá un archivo llamado `.env` (sin extensión).
 
-   Ejemplo de `.env` (crealo con un editor de texto o VS Code):
+Ejemplo de `.env` (crealo con un editor de texto o VS Code):
 
-   ```ini
-   TMDB_API_KEY=tu_clave_api_aqui
-   TELEGRAM_TOKEN=tu_token_aqui
-   ```
+```ini
+TMDB_API_KEY=tu_clave_api_aqui
+TELEGRAM_TOKEN=tu_token_aqui
+```
 
-   Importante:
+Importante:
 
-   No uses comillas en las variables (= debe estar pegado al valor).
-   No subas este archivo a GitHub. Para evitarlo, agregalo a un `.gitignore`:
+No uses comillas en las variables (= debe estar pegado al valor).
+No subas este archivo a GitHub. Para evitarlo, agregalo a un `.gitignore`:
 
-   ```bash
-   .env
-   ```
+```bash
+.env
+```
 
 3. Cargar las variables en Python
 
-   Ahora, en tu script Python, tenés que importar `dotenv` y `os` para leer las variables del archivo `.env`.
+Ahora, en tu script Python, tenés que importar `dotenv` y `os` para leer las variables del archivo `.env`.
 
-   Ejemplo en tu código:
+Ejemplo en tu código:
 
-   ```python
-   from dotenv import load_dotenv
-   import os
+```python
+from dotenv import load_dotenv
+import os
 
-   # Cargar las variables del archivo .env
-   load_dotenv()
-   # Obtener las claves
-   tmdb_api_key = os.getenv("TMDB_API_KEY")
-   telegram_token = os.getenv("TELEGRAM_TOKEN")
-   # Verificar que se cargaron bien
-   print(f"TMDB API Key: {tmdb_api_key}")
-   print(f"Telegram Token: {telegram_token}")
-   ```
+# Cargar las variables del archivo .env
+load_dotenv()
 
-   Si configuraste todo bien, cuando ejecutes el script, deberías ver en la consola las claves que pusiste en el `.env`.
+# Obtener las claves
+tmdb_api_key = os.getenv("TMDB_API_KEY")
+telegram_token = os.getenv("TELEGRAM_TOKEN")
+
+# Verificar que se cargaron bien
+print(f"TMDB API Key: {tmdb_api_key}")
+print(f"Telegram Token: {telegram_token}")
+```
+
+Si configuraste todo bien, cuando ejecutes el script, deberías ver en la consola las claves que pusiste en el `.env`.
 
 4. Usar las variables en tu código
 
-   Ahora que las variables están cargadas, podés usarlas en tu bot de Telegram:
-
-   ```python
-   import telegram
-
-   bot = telegram.Bot(token=os.getenv("TELEGRAM_TOKEN"))
-   print("Bot iniciado correctamente.")
-   ```
-
-   O cuando hagas una petición a la API de TMDB:
+Ahora que las variables están cargadas, podés usarlas en tu bot de Telegram:
 
 ```python
-    import requests
+import telegram
 
-    api_key = os.getenv("TMDB_API_KEY")
-    url = f"https://api.themoviedb.org/3/movie/popular?api_key={api_key}&language=es-ES"
+bot = telegram.Bot(token=os.getenv("TELEGRAM_TOKEN"))
+print("Bot iniciado correctamente.")
+```
 
-    response = requests.get(url)
-    print(response.json())
+O cuando hagas una petición a la API de TMDB:
+
+```python
+import requests
+
+api_key = os.getenv("TMDB_API_KEY")
+url = f"https://api.themoviedb.org/3/movie/popular?api_key={api_key}&language=es-ES"
+
+response = requests.get(url)
+print(response.json())
 ```
 
 5. Proteger el archivo .env
 
-   Para asegurarte de no exponer las claves:
+Para asegurarte de no exponer las claves:
 
-   - Agregalo al `.gitignore si usás Git`.
-   - No compartas este archivo directamente.
-   - Si subís el proyecto a un servidor como HEROKU (ver explicacion abajo), usá variables de entorno en lugar de `.env`.
+- Agregalo al `.gitignore si usás Git`.
+- No compartas este archivo directamente.
+- Si subís el proyecto a un servidor como HEROKU (ver explicacion abajo), usá variables de entorno en lugar de `.env`.
 
 #### Pasos para desplegar tu bot en Heroku:
 
 1. Prepara tu proyecto
 
-   Antes de subirlo a Heroku, asegúrate de que tu proyecto esté listo para ejecutarse en la nube.
+Antes de subirlo a Heroku, asegúrate de que tu proyecto esté listo para ejecutarse en la nube.
 
-   Asegúrate de tener un archivo `requirements.txt`. Este archivo debe contener todas las dependencias de tu proyecto. Si no lo tienes, crea uno ejecutando:
+Asegúrate de tener un archivo `requirements.txt`. Este archivo debe contener todas las dependencias de tu proyecto. Si no lo tienes, crea uno ejecutando:
 
-   ```bash
-   pip freeze > requirements.txt
-   ```
+```bash
+pip freeze > requirements.txt
+```
 
-   Esto generará una lista de todas las dependencias instaladas en tu entorno local.
+Esto generará una lista de todas las dependencias instaladas en tu entorno local.
 
-   Crea un archivo `Procfile`. Este archivo le indica a Heroku cómo ejecutar tu bot. Crea un archivo llamado `Procfile` (sin extensión) en el directorio raíz de tu proyecto y añade esta línea:
+Crea un archivo `Procfile`. Este archivo le indica a Heroku cómo ejecutar tu bot. Crea un archivo llamado `Procfile` (sin extensión) en el directorio raíz de tu proyecto y añade esta línea:
 
-   ```makefile
-   worker: python bot.py
-   ```
+```makefile
+worker: python bot.py
+```
 
-   Donde `bot.py` es el nombre del archivo principal de tu bot. Si tu archivo tiene otro nombre, cámbialo en consecuencia.
+Donde `bot.py` es el nombre del archivo principal de tu bot. Si tu archivo tiene otro nombre, cámbialo en consecuencia.
 
-   Añadir archivo `runtime.txt` (opcional). Si deseas especificar la versión de Python que quieres usar en Heroku, puedes crear un archivo llamado `runtime.txt` y añadir la versión, por ejemplo:
+Añadir archivo `runtime.txt` (opcional). Si deseas especificar la versión de Python que quieres usar en Heroku, puedes crear un archivo llamado `runtime.txt` y añadir la versión, por ejemplo:
 
-   ```txt
-   python-3.9.7
-   ```
+```txt
+python-3.9.7
+```
 
-   2. Crea una cuenta en Heroku
+2. Crea una cuenta en Heroku
 
-   Si aún no tienes una cuenta en Heroku, crea una ahora. Una vez que tengas la cuenta, inicia sesión desde la terminal:
+Si aún no tienes una cuenta en Heroku, crea una ahora. Una vez que tengas la cuenta, inicia sesión desde la terminal:
 
-   ```bash
-   heroku login
-   ```
+```bash
+heroku login
+```
 
-   Esto abrirá una ventana en tu navegador para que puedas iniciar sesión con tu cuenta de Heroku.
+Esto abrirá una ventana en tu navegador para que puedas iniciar sesión con tu cuenta de Heroku.
 
 2. Inicializa un repositorio Git
 
-   Si no tienes un repositorio Git en tu proyecto, inicialízalo ejecutando estos comandos en la raíz de tu proyecto:
+Si no tienes un repositorio Git en tu proyecto, inicialízalo ejecutando estos comandos en la raíz de tu proyecto:
 
-   ```bash
-   git init
-   git add .
-   git commit -m "Primer commit para Heroku"
-   ```
+```bash
+git init
+git add .
+git commit -m "Primer commit para Heroku"
+```
 
 3. Crea una nueva aplicación en Heroku
 
-   Ahora, crea una nueva aplicación en Heroku:
+Ahora, crea una nueva aplicación en Heroku:
 
-   ```bash
-   heroku create nombre-de-tu-app
-   ```
+```bash
+heroku create nombre-de-tu-app
+```
 
-   Este comando creará una nueva aplicación en Heroku con el nombre que elijas (nombre-de-tu-app), y automáticamente asociará el repositorio Git con tu aplicación de Heroku.
+Este comando creará una nueva aplicación en Heroku con el nombre que elijas (nombre-de-tu-app), y automáticamente asociará el repositorio Git con tu aplicación de Heroku.
 
 4. Sube tu proyecto a Heroku
 
-   Sube tu código a Heroku con los siguientes comandos:
+Sube tu código a Heroku con los siguientes comandos:
 
-   ```bash
-   git push heroku master
-   ```
+```bash
+git push heroku master
+```
 
-   Este comando sube tu código al servidor de Heroku. Si es la primera vez que lo haces, Heroku instalará todas las dependencias que definiste en `requirements.txt` y desplegará el bot.
+Este comando sube tu código al servidor de Heroku. Si es la primera vez que lo haces, Heroku instalará todas las dependencias que definiste en `requirements.txt` y desplegará el bot.
 
 5. Verifica que el bot esté corriendo
 
-   Una vez que se haya completado el despliegue, puedes verificar los logs para asegurarte de que el bot esté funcionando correctamente:
+Una vez que se haya completado el despliegue, puedes verificar los logs para asegurarte de que el bot esté funcionando correctamente:
 
-   ```bash
-   heroku logs --tail
-   ```
+```bash
+heroku logs --tail
+```
 
 6. Habilitar el bot 24/7
 
-   Heroku tiene un plan gratuito con ciertas limitaciones (como dormir la app después de 30 minutos sin uso). Si quieres evitar que tu bot se apague, tendrás que optar por un plan de pago. Sin embargo, hay formas de mantenerlo activo utilizando servicios como Uptime Robot que envían pings periódicos a tu app para evitar que entre en inactividad.
+Heroku tiene un plan gratuito con ciertas limitaciones (como dormir la app después de 30 minutos sin uso). Si quieres evitar que tu bot se apague, tendrás que optar por un plan de pago. Sin embargo, hay formas de mantenerlo activo utilizando servicios como Uptime Robot que envían pings periódicos a tu app para evitar que entre en inactividad.
 
 7. Opcional: Configura el bot con variables de entorno
 
-   Si necesitas variables de entorno, como tu token de Telegram o tu API de TMDB, puedes configurarlas en Heroku:
+Si necesitas variables de entorno, como tu token de Telegram o tu API de TMDB, puedes configurarlas en Heroku:
 
-   ```bash
-   heroku config:set TELEGRAM_TOKEN=tu_token TELEGRAM_USER=tu_usuario
-   ```
+```bash
+heroku config:set TELEGRAM_TOKEN=tu_token TELEGRAM_USER=tu_usuario
+```
 
-   Puedes acceder a estas variables en tu código Python utilizando:
+Puedes acceder a estas variables en tu código Python utilizando:
 
-   ```python
-   import os
-   TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
-   ```
+```python
+import os
+TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
+```
 
 8. Listo!
 
-   ¡Tu bot ya debería estar funcionando 24/7 en Heroku! Puedes invocar el bot desde Telegram y comenzar a interactuar con él.
+¡Tu bot ya debería estar funcionando 24/7 en Heroku! Puedes invocar el bot desde Telegram y comenzar a interactuar con él.
 
 ### Limitaciones
 

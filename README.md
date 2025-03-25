@@ -50,12 +50,12 @@ In addition, the bot allows for interactive navigation using buttons, improving 
 
 #### Preview
 
-<img align="center" src="https://i.imgur.com/7GXWLHd.jpeg" alt="Bot01" />
-<img align="center" src="https://i.imgur.com/xlMrMYO.jpeg" alt="Bot02" />
-<img align="center" src="https://i.imgur.com/OGITxpr.jpeg" alt="Bot03" />
-<img align="center" src="https://i.imgur.com/KGTVCIG.jpeg" alt="Bot04" />
-<img align="center" src="https://i.imgur.com/sA9bLpD.jpeg" alt="Bot05" />
-<img align="center" src="https://i.imgur.com/oNQH8Vk.jpeg" alt="Bot06" />
+<img align="center" src="https://i.imgur.com/7GXWLHd.jpeg" alt="Bot01" height=300 />
+<img align="center" src="https://i.imgur.com/xlMrMYO.jpeg" alt="Bot02" height=300 />
+<img align="center" src="https://i.imgur.com/OGITxpr.jpeg" alt="Bot03" height=300 />
+<img align="center" src="https://i.imgur.com/KGTVCIG.jpeg" alt="Bot04" height=300 />
+<img align="center" src="https://i.imgur.com/sA9bLpD.jpeg" alt="Bot05" height=300 />
+<img align="center" src="https://i.imgur.com/oNQH8Vk.jpeg" alt="Bot06" height=300 />
 <img align="center" src="https://i.imgur.com/XhD1Qjc.jpeg" alt="Bot07" />
 
 #### Code with Comments (English)
@@ -368,9 +368,11 @@ import os
 
 # Load the variables from the .env file
 load_dotenv()
+
 # Get the keys
 tmdb_api_key = os.getenv("TMDB_API_KEY")
 telegram_token = os.getenv("TELEGRAM_TOKEN")
+
 # Verify that they loaded correctly
 print(f"TMDB API Key: {tmdb_api_key}")
 print(f"Telegram Token: {telegram_token}")
@@ -394,11 +396,11 @@ Or when making a request to the TMDB API:
 ```python
 import requests
 
-     api_key = os.getenv("TMDB_API_KEY")
-     url = f"https://api.themoviedb.org/3/movie/popular?api_key={api_key}&language=es-ES"
+api_key = os.getenv("TMDB_API_KEY")
+url = f"https://api.themoviedb.org/3/movie/popular?api_key={api_key}&language=es-ES"
 
-     response = requests.get(url)
-     print(response.json())
+response = requests.get(url)
+print(response.json())
 ```
 
 5. Protecting the .env file
