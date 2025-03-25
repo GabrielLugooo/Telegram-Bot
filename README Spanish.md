@@ -50,12 +50,12 @@ Además, el bot permite la navegación interactiva mediante botones, lo que mejo
 
 #### Vista Previa
 
-<img align="center" src="https://i.imgur.com/7GXWLHd.jpeg" alt="Bot01" />
-<img align="center" src="https://i.imgur.com/xlMrMYO.jpeg" alt="Bot02" />
-<img align="center" src="https://i.imgur.com/OGITxpr.jpeg" alt="Bot03" />
-<img align="center" src="https://i.imgur.com/KGTVCIG.jpeg" alt="Bot04" />
-<img align="center" src="https://i.imgur.com/sA9bLpD.jpeg" alt="Bot05" />
-<img align="center" src="https://i.imgur.com/oNQH8Vk.jpeg" alt="Bot06" />
+<img align="center" src="https://i.imgur.com/7GXWLHd.jpeg" alt="Bot01" heigth=400 />
+<img align="center" src="https://i.imgur.com/xlMrMYO.jpeg" alt="Bot02" heigth=400 />
+<img align="center" src="https://i.imgur.com/OGITxpr.jpeg" alt="Bot03" heigth=400 />
+<img align="center" src="https://i.imgur.com/KGTVCIG.jpeg" alt="Bot04" heigth=400 />
+<img align="center" src="https://i.imgur.com/sA9bLpD.jpeg" alt="Bot05" heigth=400 />
+<img align="center" src="https://i.imgur.com/oNQH8Vk.jpeg" alt="Bot06" heigth=400 />
 <img align="center" src="https://i.imgur.com/XhD1Qjc.jpeg" alt="Bot07" />
 
 #### Código con Comentarios (Español)
@@ -390,7 +390,7 @@ except (json.JSONDecodeError, FileNotFoundError) as e:
    O cuando hagas una petición a la API de TMDB:
 
 ```python
-import requests
+    import requests
 
     api_key = os.getenv("TMDB_API_KEY")
     url = f"https://api.themoviedb.org/3/movie/popular?api_key={api_key}&language=es-ES"
