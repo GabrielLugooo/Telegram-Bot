@@ -83,20 +83,20 @@ cipher_suite = Fernet(key)
 
 # Encrypt and save data
 with open('users.json', 'rb') as file:
-     data = file.read()
+      data = file.read()
 encrypted_data = cipher_suite.encrypt(data)
 
 with open('encrypted_users.json', 'wb') as file:
-     file.write(encrypted_data)
+      file.write(encrypted_data)
 
 # List of allowed chat_ids, the Ids are stored in the users.json
 allowed_users = [-100123456789]
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-     chat_id = update.message.chat.id
-     if chat_id not in allowed_users:
-         await update.message.reply_text("You do not have permissions to interact with this bot.")
-         return
+      chat_id = update.message.chat.id
+      if chat_id not in allowed_users:
+           await update.message.reply_text("You do not have permissions to interact with this bot.")
+      return
 
 # Set standard output to UTF-8
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -113,96 +113,95 @@ users_file = "users.json" # JSON file where Telegram group user IDs are stored
 
 # Load users from file
 def load_users():
-     try:
-         with open(users_file, "r") as file:
-             return json.load(file)
-     except (FileNotFoundError, json.JSONDecodeError):
-         return []
+      try:
+           with open(users_file, "r") as file:
+           return json.load(file)
+      except (FileNotFoundError, json.JSONDecodeError):
+           return []
 
 # Save users to file
 def save_users(users):
-     with open(users_file, "w") as file:
-         json.dump(users, file)
+      with open(users_file, "w") as file:
+           json.dump(users, file)
 
 # Save user if new
 def save_user(chat_id):
-     users = load_users()
-     if chat_id not in users:
-         users.append(chat_id)
-         save_users(users)
+      users = load_users()
+      if chat_id not in users:
+           users.append(chat_id)
+           save_users(users)
 
 # Get movie categories
 def get_movie_categories():
-     return {
-         "🎬 Popular": 'popular',
-         "⭐ Top Rated": 'top_rated',
-         "🎥 Now Playing": 'now_playing',
-         "🔜 Coming Soon": 'upcoming'
-     }
+      return {
+           "🎬 Popular": 'popular',
+           "⭐ Top Rated": 'top_rated',
+           "🎥 Now Playing": 'now_playing',
+           "🔜 Coming Soon": 'upcoming'
+      }
 
 # Get movies by category with error handling
 def get_movies_by_category(category, page=1):
      try:
-         tmdb_url = f'{tmdb_base_url}{category}?page={page}&api_key={api_key}&language=es&region=AR'
-         response = requests.get(tmdb_url)
-         response.raise_for_status() # Check if there was an error in the request
-         return response.json()
+           tmdb_url = f'{tmdb_base_url}{category}?page={page}&api_key={api_key}&language=es&region=AR'
+           response = requests.get(tmdb_url)
+           response.raise_for_status() # Check if there was an error in the request
+           return response.json()
      except requests.exceptions.RequestException as e:
-         print(f"Error getting movies from TMDB: {e}")
-         return {"results": []} # Return an empty result on error
+           print(f"Error getting movies from TMDB: {e}")
+           return {"results": []} # Return an empty result on error
 
 # Get a movie trailer with error handling
 def get_movie_trailer(movie_id):
-     try:
-         tmdb_url = f'{tmdb_base_url}{movie_id}/videos?api_key={api_key}&language=es'
-         response = requests.get(tmdb_url)
-         response.raise_for_status() # Check if there was an error in the request
-         json_data = response.json()
-         return f'https://www.youtube.com/watch?v={json_data["results"][0]["key"]}' if json_data.get("results") else "Not available"
-     except requests.exceptions.RequestException as e:
-         print(f"Error getting movie trailer for {movie_id}: {e}")
-         return "Not available"
+      try:
+           tmdb_url = f'{tmdb_base_url}{movie_id}/videos?api_key={api_key}&language=es'
+           response = requests.get(tmdb_url)
+           response.raise_for_status() # Check if there was an error in the request
+           json_data = response.json()
+           return f'https://www.youtube.com/watch?v={json_data["results"][0]["key"]}' if json_data.get("results") else "Not available"
+      except requests.exceptions.RequestException as e:
+           print(f"Error getting movie trailer for {movie_id}: {e}")
+           return "Not available"
 
 # Create an interactive keyboard for the main menu
 def create_category_keyboard():
-     keyboard = [[InlineKeyboardButton(cat, callback_data=key)] for cat, key in get_movie_categories().items()]
-     return InlineKeyboardMarkup(keyboard)
+      keyboard = [[InlineKeyboardButton(cat, callback_data=key)] for cat, key in get_movie_categories().items()]
+      return InlineKeyboardMarkup(keyboard)
 
 # Create an interactive keyboard for pagination and returning to the menu
 def create_pagination_keyboard(page, total_pages):
      keyboard = []
-     if page > 1:
-         keyboard.append([InlineKeyboardButton("⬅️ Previous Page", callback_data=f"page_{page-1}")])
-     if page < total_pages:
-         keyboard.append([InlineKeyboardButton("➡️ Next Page", callback_data=f"page_{page+1}")])
-     keyboard.append([InlineKeyboardButton(f"Page {page}/{total_pages}", callback_data="none")])
-     keyboard.append([InlineKeyboardButton("🏠 Return to main menu", callback_data="menu")])
-     return InlineKeyboardMarkup(keyboard)
+      if page > 1:
+           keyboard.append([InlineKeyboardButton("⬅️ Previous Page", callback_data=f"page_{page-1}")])
+      if page < total_pages:
+           keyboard.append([InlineKeyboardButton("➡️ Next Page", callback_data=f"page_{page+1}")])
+           keyboard.append([InlineKeyboardButton(f"Page {page}/{total_pages}", callback_data="none")])
+           keyboard.append([InlineKeyboardButton("🏠 Return to main menu", callback_data="menu")])
+      return InlineKeyboardMarkup(keyboard)
 
 # Send category menu
 async def send_category_menu(chat_id, context: ContextTypes.DEFAULT_TYPE):
      message = "🎞️ *Select a category to get movies:*"
      keyboard = create_category_keyboard()
-     await context.bot.send_message(chat_id=chat_id, text=message, reply_markup=keyboard, parse_mode="Markdown")
+           await context.bot.send_message(chat_id=chat_id, text=message, reply_markup=keyboard, parse_mode="Markdown")
 
 # Send movies to user with pagination
 async def send_movies_to_telegram(movies, chat_id, context: ContextTypes.DEFAULT_TYPE, page=1):
      total_pages = len(movies) // 10 + (1 if len(movies) % 10 > 0 else 0) # Calculate the total number of pages
      start, end = (page - 1) * 10, page * 10
- for movie in movies[start:end]:
+      for movie in movies[start:end]:
          title, votes, description, poster_path = movie['title'], movie['vote_average'], movie['overview'], movie.get('poster_path')
          trailer_url = get_movie_trailer(movie['id'])
          message = f"*🎬 Title:* {title}\n⭐ *Votes:* {votes}\n📖 *Synopsis:* {description}\n🎥 *Trailer:* {trailer_url}"
+           if poster_path:
+                await context.bot.send_photo(chat_id=chat_id, photo=image_base_url + poster_path, caption=message, parse_mode="Markdown")
+           else:
+                await context.bot.send_message(chat_id=chat_id, text=message, parse_mode="Markdown")
 
-if poster_path:
-await context.bot.send_photo(chat_id=chat_id, photo=image_base_url + poster_path, caption=message, parse_mode="Markdown")
-else:
-await context.bot.send_message(chat_id=chat_id, text=message, parse_mode="Markdown")
+await asyncio.sleep(2) # Prevent spam
 
-         await asyncio.sleep(2) # Prevent spam
-
-     # Show navigation buttons after sending movies
-     keyboard = create_pagination_keyboard(page, total_pages)
+# Show navigation buttons after sending movies
+keyboard = create_pagination_keyboard(page, total_pages)
      await context.bot.send_message(chat_id=chat_id, text="Navigate between pages or return to the main menu.", reply_markup=keyboard)
 
 # Handle user responses when selecting a category or browsing
@@ -210,7 +209,7 @@ async def handle_user_response(update: Update, context: ContextTypes. DEFAULT_TY
      query = update.callback_query
      category = query.data
 
-     # Store the current chat state
+# Store the current chat state
      chat_id = query.message.chat_id
      user_data = context.user_data
 
@@ -219,8 +218,7 @@ async def handle_user_response(update: Update, context: ContextTypes. DEFAULT_TY
          await send_category_menu(chat_id, context)
          user_data['category'] = None # Reset category
          user_data['page'] = 1 # Reset page
-         return
-
+     return
      # If the user selects a category
      if category in ['popular', 'top_rated', 'now_playing', 'upcoming']:
            user_data['category'] = category
@@ -230,13 +228,11 @@ async def handle_user_response(update: Update, context: ContextTypes. DEFAULT_TY
                 await send_movies_to_telegram(movies_data['results'], chat_id, context, page=1)
            else:
                 await query.message.reply_text('❌ No movies found in this category.')
-           return
-
+     return
      # If the user navigates between pages
      if category.startswith("page_"):
            page = int(category.split("_")[1])
            category_name = user_data.get('category')
-
            if category_name:
                 movies_data = get_movies_by_category(category_name, page)
                 if 'results' in movies_data:
@@ -245,7 +241,7 @@ async def handle_user_response(update: Update, context: ContextTypes. DEFAULT_TY
                     await query.message.reply_text('❌ No movies found in this category.')
            else:
                 await query.message.reply_text('❌ No category has been selected.')
-           return
+     return
 
 # Send menu when starting chat
 async def start(update: Update, context: ContextTypes. DEFAULT_TYPE):
