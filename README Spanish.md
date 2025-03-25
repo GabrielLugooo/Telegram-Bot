@@ -50,12 +50,12 @@ Además, el bot permite la navegación interactiva mediante botones, lo que mejo
 
 #### Vista Previa
 
-<img align="center" src="https://i.imgur.com/7GXWLHd.jpeg" alt="Bot01" heigth=400 />
-<img align="center" src="https://i.imgur.com/xlMrMYO.jpeg" alt="Bot02" heigth=400 />
-<img align="center" src="https://i.imgur.com/OGITxpr.jpeg" alt="Bot03" heigth=400 />
-<img align="center" src="https://i.imgur.com/KGTVCIG.jpeg" alt="Bot04" heigth=400 />
-<img align="center" src="https://i.imgur.com/sA9bLpD.jpeg" alt="Bot05" heigth=400 />
-<img align="center" src="https://i.imgur.com/oNQH8Vk.jpeg" alt="Bot06" heigth=400 />
+<img align="center" src="https://i.imgur.com/7GXWLHd.jpeg" alt="Bot01" heigth=300 />
+<img align="center" src="https://i.imgur.com/xlMrMYO.jpeg" alt="Bot02" heigth=300 />
+<img align="center" src="https://i.imgur.com/OGITxpr.jpeg" alt="Bot03" heigth=300 />
+<img align="center" src="https://i.imgur.com/KGTVCIG.jpeg" alt="Bot04" heigth=300 />
+<img align="center" src="https://i.imgur.com/sA9bLpD.jpeg" alt="Bot05" heigth=300 />
+<img align="center" src="https://i.imgur.com/oNQH8Vk.jpeg" alt="Bot06" heigth=300 />
 <img align="center" src="https://i.imgur.com/XhD1Qjc.jpeg" alt="Bot07" />
 
 #### Código con Comentarios (Español)
