@@ -51,15 +51,15 @@ In addition, the bot allows for interactive navigation using buttons, improving 
 #### Preview
 
 <p align= left>
-<img align="center" src="https://i.imgur.com/7GXWLHd.jpeg" alt="Bot01" height=300 weight=350 /><img align="center" src="https://i.imgur.com/xlMrMYO.jpeg" alt="Bot02" height=300 weight=350 />
+<img align="center" src="https://i.imgur.com/7GXWLHd.jpeg" alt="Bot01" weight=350 /><img align="center" src="https://i.imgur.com/xlMrMYO.jpeg" alt="Bot02" weight=350 />
 </p>
 
 <p align= left>
-<img align="center" src="https://i.imgur.com/OGITxpr.jpeg" alt="Bot03" height=300 weight=350 /><img align="center" src="https://i.imgur.com/KGTVCIG.jpeg" alt="Bot04" height=300 weight=350 />
+<img align="center" src="https://i.imgur.com/OGITxpr.jpeg" alt="Bot03" weight=350 /><img align="center" src="https://i.imgur.com/KGTVCIG.jpeg" alt="Bot04" weight=350 />
 </p>
 
 <p align= left>
-<img align="center" src="https://i.imgur.com/sA9bLpD.jpeg" alt="Bot05" height=300 weight=350 /><img align="center" src="https://i.imgur.com/oNQH8Vk.jpeg" alt="Bot06" height=300 weight=350 />
+<img align="center" src="https://i.imgur.com/sA9bLpD.jpeg" alt="Bot05" weight=350 /><img align="center" src="https://i.imgur.com/oNQH8Vk.jpeg" alt="Bot06" weight=350 />
 </p>
 
 <p align= left>
